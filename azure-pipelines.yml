@@ -1,0 +1,8 @@
+trigger: none
+pool: Ankitpool
+stages:
+- stage: terraforminit
+  jobs:
+  - job: initializejob
+    steps:
+    
