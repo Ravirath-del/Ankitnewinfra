@@ -32,10 +32,9 @@ stages:
         command: 'plan'
         workingDirectory: '$(System.DefaultWorkingDirectory)/parent'
         environmentServiceNameAzureRM: 'ankitconn'
-
     - task: TerraformTask@5
-      displayName: apply
       inputs:
         provider: 'azurerm'
         command: 'apply'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/parent'
         environmentServiceNameAzureRM: 'ankitconn'
