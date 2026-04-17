@@ -23,13 +23,13 @@ stages:
       inputs:
         version: 'v1.26.0'
         dir: '$(System.DefaultWorkingDirectory)'
-
     - task: TerraformTask@5
-      displayName: plan
       inputs:
         provider: 'azurerm'
         command: 'plan'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/parent'
         environmentServiceNameAzureRM: 'ankitconn'
+
     - task: TerraformTask@5
       displayName: apply
       inputs:
