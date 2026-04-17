@@ -5,13 +5,13 @@ terraform {
       version = "4.68.0"
     }
   }
-  backend "azurerm" {
-storage_account_name = "ravsastg"
-resource_group_name = "Ravi-RG"
-container_name = "stgcontainer"
-key = "dev.tfstate"
+#   backend "azurerm" {
+# storage_account_name = "ravsastg"
+# resource_group_name = "Ravi-RG"
+# container_name = "stgcontainer"
+# key = "dev.tfstate"
 
-  }
+#   }
 }
 provider "azurerm" {
   features {}
