@@ -5,4 +5,16 @@ stages:
   jobs:
   - job: initializejob
     steps:
-    
+    - task: TerraformInstaller@1
+      displayName: tool install ho rha hai
+      inputs:
+        terraformVersion: 'latest'
+    - task: TerraformTask@5
+      displayName: init chal gya
+      inputs:
+        provider: 'azurerm'
+        command: 'init'
+        backendServiceArm: 'ankitconn'
+        backendAzureRmStorageAccountName: 'ravsastg'
+        backendAzureRmContainerName: 'stgcontainer'
+        backendAzureRmKey: 'dev.tfstate'
