@@ -15,15 +15,7 @@ stages:
       inputs:
         version: 'v1.26.0'
         dir: '$(System.DefaultWorkingDirectory)/parent'
-    - task: TerraformTask@5
-      displayName: init chal gya
-      inputs:
-        provider: 'azurerm'
-        command: 'init'
-        backendServiceArm: 'ankitconn'
-        backendAzureRmStorageAccountName: 'ravsastg'
-        backendAzureRmContainerName: 'stgcontainer'
-        backendAzureRmKey: 'dev.tfstate'
+    
     - task: TerraformTask@5
       displayName: plan
       inputs:
@@ -31,7 +23,15 @@ stages:
         command: 'plan'
         workingDirectory: '$(System.DefaultWorkingDirectory)/parent'
         environmentServiceNameAzureRM: 'ankitconn'
-
+    - task: TerraformTask@5
+      inputs:
+        provider: 'azurerm'
+        command: 'init'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/parent'
+        backendServiceArm: 'ankitconn'
+        backendAzureRmStorageAccountName: 'ravsastg'
+        backendAzureRmContainerName: 'stgcontainer'
+        backendAzureRmKey: 'dev.tfstate'
     - task: TerraformTask@5
       displayName: apply
       inputs:
