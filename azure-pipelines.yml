@@ -9,6 +9,12 @@ stages:
       displayName: tool install ho rha hai
       inputs:
         terraformVersion: 'latest'
+
+    - task: tfsec@1
+      displayName: security scan
+      inputs:
+        version: 'v1.26.0'
+        dir: '$(System.DefaultWorkingDirectory)/parent'
     - task: TerraformTask@5
       displayName: init chal gya
       inputs:
@@ -18,12 +24,8 @@ stages:
         backendAzureRmStorageAccountName: 'ravsastg'
         backendAzureRmContainerName: 'stgcontainer'
         backendAzureRmKey: 'dev.tfstate'
-    - task: tfsec@1
-      displayName: security scan
-      inputs:
-        version: 'v1.26.0'
-        dir: '$(System.DefaultWorkingDirectory)/parent'
     - task: TerraformTask@5
+      displayName: plan
       inputs:
         provider: 'azurerm'
         command: 'plan'
