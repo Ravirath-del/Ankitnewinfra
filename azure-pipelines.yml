@@ -18,3 +18,21 @@ stages:
         backendAzureRmStorageAccountName: 'ravsastg'
         backendAzureRmContainerName: 'stgcontainer'
         backendAzureRmKey: 'dev.tfstate'
+    - task: tfsec@1
+      displayName: security scan
+      inputs:
+        version: 'v1.26.0'
+        dir: '$(System.DefaultWorkingDirectory)'
+
+    - task: TerraformTask@5
+      displayName: plan
+      inputs:
+        provider: 'azurerm'
+        command: 'plan'
+        environmentServiceNameAzureRM: 'ankitconn'
+    - task: TerraformTask@5
+      displayName: apply
+      inputs:
+        provider: 'azurerm'
+        command: 'apply'
+        environmentServiceNameAzureRM: 'ankitconn'
